@@ -1,0 +1,78 @@
+<div class="contanier mt-2">
+  <form #productForm = 'ngForm' (ngSubmit) = 'addProduct(productForm)' >
+  <div class="card col-md-4 offset-md-4">
+    <div class="card-head text-center mt-2 p-3 bg-info text-light">Product form</div>
+    <div class="form-group">
+      <label for="prodName">Product name</label>
+      <input
+       #prodName= "ngModel"
+       ngModel
+       class="form-control"
+       type="text"
+       name="prodName"
+       pattern="^[a-zA-Z]*$"
+       minlength="3"
+       maxlength="20"
+        required />
+       <ng-container *ngIf = 'prodName.touched && prodName.invalid'>
+         <div class="alert alert-danger" *ngIf='prodName.errors.required'>
+           this filed is mandatry
+         </div>
+         <div class="alert alert-danger" *ngIf='prodName.errors.minlength || prodName.errors.pattern'>
+          atleast 3charater and character required
+        </div>
+
+       </ng-container>
+     </div>
+
+    <div class="form-group">
+      <label for="prodPrice">Product price</label>
+      <input #prodPrice="ngModel"
+      ngModel
+      class="form-control"
+      type="text"
+      name="prodPrice"
+      pattern="^[0-9]*$"
+      required>
+      <ng-container *ngIf = 'prodPrice.touched && prodPrice.invalid'>
+        <div class="alert alert-danger" *ngIf='prodPrice.errors.required'>
+          this filed is mandatry
+        </div>
+        <div class="alert alert-danger" *ngIf='prodName.errors.minlength || prodName.errors.pattern'>
+          atleast 3charater and number required
+        </div>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="prodDescription">Product description</label>
+      <input #prodDescription ="ngModel"
+      ngModel
+       class="form-control"
+       type="text"
+       name="prodDescription"
+       required >
+
+    </div>
+    <div class="form-group">
+      <label for="prodImageUrl">Image url</label>
+      <input #prodImage="ngModel"
+      ngModel
+      class="form-control"
+      type="text"
+      name="prodImageUrl"
+      required>
+      <ng-container *ngIf = 'prodImage.touched && prodImage.invalid'>
+        <div class="alert alert-danger" *ngIf='prodImage.errors.required'>
+          this filed is mandatry
+        </div>
+        <div class="alert alert-danger" *ngIf='prodImage.errors.minlength'>
+         only url allowed
+       </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="cardfooter">
+    <button type="submit" class="btn btn-primary float-rigth" [disabled]= ''>ADD</button>
+  </div>
+</form>
+</div>
