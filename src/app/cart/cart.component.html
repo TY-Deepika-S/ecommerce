@@ -1,0 +1,29 @@
+<div class="container-flui mb-5">
+  <div div class="row">
+    <ng-container *ngFor="let product of productDetails.store; index as i">
+      <div class="card col-md-3 ml-1 mt-2">
+        <img class="img  " [src]="product.productImageURL" alt=".." height="200px" width="100%">
+        <div class="card-head text-center pt-2 pb-2 h4">
+          {{product.productName}}
+        </div>
+        <div class="card-body">
+
+          <p>Price : {{product.productPrice}}</p>
+          <p>Description : {{product.productDescription}}</p>
+          <p>Quantity: {{product.quantity}}</p>
+          <p>TotalPrice:{{product.quantity * product.productPrice}} </p>
+        </div>
+        <div class="card-footer">
+          <label for="quantity">Quantity:</label>
+          <input type="number" name="quantity" class="quant mt-2"  [(ngModel)]="product.quantity" min="1">
+          <button class=" btn btn-outline-primary float-right" (click)="productDetails.removeCart(i)">Remove</button>
+        </div>
+        <div>
+          <button class="btn btn-outline-success bttn ml-4">
+            <i class="fas fa-shopping-basket"></i>Buy Now
+          </button>
+        </div>
+      </div>
+      </ng-container>
+  </div>
+</div>

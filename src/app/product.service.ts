@@ -1,50 +1,64 @@
-import { Injectable } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { Product } from '../app/product.model';
-import { Router} from "@angular/router";
+import { Injectable } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
-
+  providedIn: 'root',
 })
+export class ProductService {
+  products = [
+    {
+      productName: 'car',
+      productPrice: 500000,
+      productImageURL:
+        'https://cdn.pixabay.com/photo/2016/04/01/12/16/car-1300629__340.png',
+      productDescription: 'very nice car',
+    },
+  ];
+  variable = -1;
+  constructor(private router: Router) {}
+  selectedName: null;
+  selectedPrice: null;
+  selectedImageURL: null;
+  selectedDescription: null;
 
-export class ProductsDetails {
-  product : Product [] = [{
-    prodName:'rice',
-    prodPrice: 1000,
-    prodDescription: 'good quality',
-    prodImageUrl:'https://cdn.pixabay.com/photo/2016/02/19/11/23/bicycle-1209682__340.jpg'
-  }];
+  onSubmit(data: NgForm) {
+    if (this.variable == -1) {
+      var temp = data.value;
+      data.reset();
+      this.products.push(temp);
+      console.log(this.products);
+      alert("product added successfully!");
 
-  selectedName:null;
-  selectedPrice:null;
-  selectedDescription:null;
-  selectedUrl:null;
-  constructor(private router:Router) {}
-
-  add(data){
-    console.log(data.value);
-    this.product.push(data.value);
-    data.reset();
-    this.router.navigateByUrl('/view');
-  }
-  delete(i){
-    if(confirm('are u sure')){
-      this.product.splice(i,1);
-      alert("deleted successfuly")
+    }else {
+      var temp = data.value;
+      data.reset();
+      this.products.splice(this.variable, 1, temp);
+      console.log(this.products)
+      this.router.navigateByUrl('/view-products');
+      alert("product information updated!");
     }
   }
-  //function to edit the product details
-  edit(data, index){
-    console.log(data);
-    console.log(index);
-    this.selectedName= data.prodName;
-    this.selectedPrice= data.prodPrice;
-    this.selectedDescription= data.prodDescription;
-    this.selectedUrl= data.prodImageUrl;
-    this.product.splice(index, 1);
-    this.router.navigateByUrl('/add');
+  deleteProduct(index){
+    this.products.splice(index, 1);
   }
 
+  editProduct(data, index){
+    this.variable = index;
+    this.selectedName = data.productName;
+    this.selectedPrice = data.productPrice;
+    this.selectedImageURL = data.productImageURL;
+    this.selectedDescription = data.productDescription;
+    this.router.navigateByUrl('/add-products');
+  }
+store=[];
+  addToCart(data, i){
+    this.variable=i;
+    this.store.push({...data,quantity:1});
+    console.log(this.store)
+    alert("product added to cart successfully!");
+  }
+  removeCart(index){
+    this.store.splice(index, 1);
+  }
 }
-

@@ -1,0 +1,60 @@
+<div>
+<div class="col-md-4 offset-md-4 mt-4 box">
+  <h4>PRODUCT DETAILS</h4>
+  <form #productForm="ngForm" (ngSubmit)='ProductService.onSubmit(productForm)'>
+    <div class="form-group">
+      <label for=" prodctName"> productName</label>
+      <input type="text" name="productName" #productName="ngModel" ngModel class="form-control" minlength="3" max="30"
+      [(ngModel)]='this.ProductService.selectedName' required>
+      <div *ngIf="productName.touched && productName.invalid">
+        <div *ngIf="productName.errors.required" class="alert alert-danger">
+          this field is mandatory
+        </div>
+        <div *ngIf="productName.errors.minlength" class="alert alert-danger">
+          minimum 3 characters required
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for=" productPrice"> productPrice</label>
+      <input type="text" name="productPrice" #productPrice="ngModel" ngModel class="form-control" minlength="3" max="30"
+        pattern="^[0-9]*$" [(ngModel)]='this.ProductService.selectedPrice' required>
+      <div *ngIf="productPrice.touched && productPrice.invalid">
+        <div *ngIf="productPrice.errors.pattern" class="alert alert-danger">
+          enter number
+        </div >
+        <div *ngIf="productPrice.errors.minlength" class="alert alert-danger">
+          enter 3 digit number
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for=" productImageURL"> productImageURL</label>
+      <input type="text" name="productImageURL" #productImageURL="ngModel" ngModel class="form-control" minlength="3"
+        max="30" [(ngModel)]='this.ProductService.selectedImageURL' required>
+      <div *ngIf="productImageURL.touched && productImageURL.invalid">
+        <div *ngIf="productImageURL.errors.required" class="alert alert-danger">
+          this field is mandatory
+        </div>
+        <div *ngIf="productImageURL.errors.minlength" class="alert alert-danger">
+          minimum 3 characters required
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for=" productDescription"> productDescription</label>
+      <input type="text" name="productDescription" #productDescription="ngModel" ngModel class="form-control"
+        minlength="3"  max="30"  [(ngModel)]='this.ProductService.selectedDescription' required>
+      <div *ngIf="productDescription.touched && productDescription.invalid">
+        <div *ngIf="productDescription.errors.required" class="alert alert-danger">
+          this field is mandatory
+        </div>
+        <div *ngIf="productDescription.errors.minlength" class="alert alert-danger">
+          minimum 3 characters required
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-outline-primary float-right" type="submit" [disabled]='productForm.invalid'>Submit</button>
+  </form>
+</div>
+</div>

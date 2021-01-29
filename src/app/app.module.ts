@@ -3,25 +3,26 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { ViewproductComponent } from './viewproduct/viewproduct.component';
-import { AddProductComponent } from './add-product/add-product.component';
+import { FooterComponent } from './footer/footer.component';
+import { CartComponent } from './cart/cart.component';
+import { AddProductsComponent } from './add-products/add-products.component';
+import { ViewProductsComponent } from './view-products/view-products.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
     HeaderComponent,
-    ViewproductComponent,
-    AddProductComponent
+    FooterComponent,
+    CartComponent,
+    AddProductsComponent,
+    ViewProductsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
