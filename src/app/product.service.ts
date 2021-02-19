@@ -8,11 +8,11 @@ import { Router } from '@angular/router';
 export class ProductService {
   products = [
     {
-      productName: 'car',
-      productPrice: 500000,
+      productName: 'IWatch',
+      productPrice: 5000,
       productImageURL:
-        'https://cdn.pixabay.com/photo/2016/04/01/12/16/car-1300629__340.png',
-      productDescription: 'very nice car',
+        'https://media.istockphoto.com/photos/apple-watch-sport-42mm-silver-aluminum-case-with-white-band-picture-id496730484?b=1&k=6&m=496730484&s=170667a&w=0&h=V5A7hc7yJ9s5O-xALTyocuEyu5zj-ikcwXpYvLYN_VQ=',
+      productDescription: 'good',
     },
   ];
   variable = -1;
